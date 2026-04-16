@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           port:     65002
           script: |
-            cd ~/public_html
+            cd public_html/kanflow-app
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
