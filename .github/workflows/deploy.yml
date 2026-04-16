@@ -22,7 +22,6 @@ jobs:
           port:     65002
           script: |
             cd domains/yassinebenhamzah.com/public_html/kanflow-app
-            php artisan key:generate
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
