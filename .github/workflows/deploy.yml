@@ -7,11 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Hostinger pull
-        run: curl -s -X POST "${{ secrets.HOSTINGER_WEBHOOK_URL }}"
 
-      - name: Wait for pull
-        run: sleep 5
 
       - name: Post-deploy via SSH
         uses: appleboy/ssh-action@v1
@@ -22,6 +18,7 @@ jobs:
           port:     65002
           script: |
             cd domains/yassinebenhamzah.com/public_html/kanflow-app
+            git pull origin main
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
