@@ -50,4 +50,7 @@ class User extends Authenticatable
     public function ownedBoards() {
         return $this->hasMany(Board::class, 'owner_id');
     }
+    public function boards() {
+        return $this->belongsToMany(Board::class, 'board_user')->withPivot('role');
+    }
 }
