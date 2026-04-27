@@ -20,11 +20,19 @@ class BoardController extends Controller
         return $board->load('columns.tasks.assignee', 'members');
     }
 
-    public function store(Request  $request) {
+    public function store(Request $request) {
         $board = $request->user()->ownedBoards()->create($request->all());
         // Owner is also a member
         $board->members()->attach($request->user()->id, ['role' => 'owner']);
-        return response()->json($board, 201);
+        
+        // Auto-create 3 default columns
+        $board->columns()->createMany([
+            ['name' => 'To Do',        'position' => 1],
+            ['name' => 'In Progress',  'position' => 2],
+            ['name' => 'Done',         'position' => 3],
+        ]);
+        
+        return response()->json($board->load('columns'), 201);
     }
 
     public function destroy(Board $board) {
