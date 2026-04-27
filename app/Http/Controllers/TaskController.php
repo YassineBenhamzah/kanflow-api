@@ -46,13 +46,14 @@ class TaskController extends Controller
             'column_id' => $request->column_id,
             'position'  => $request->position,
         ]);
-        $boardId = $task->column->board_id;
-        broadcast(new TaskMoved([
-            'task_id'     => $task->id,
-            'column_id'   => $request->column_id,
-            'position'    => $request->position,
-            'old_column'  => $oldColumnId,
-        ], $boardId))->toOthers();
+        // Temporarily disabled until Pusher is configured
+        // $boardId = $task->column->board_id;
+        // broadcast(new TaskMoved([
+        //     'task_id'     => $task->id,
+        //     'column_id'   => $request->column_id,
+        //     'position'    => $request->position,
+        //     'old_column'  => $oldColumnId,
+        // ], $boardId))->toOthers();
         return response()->json($task);
     }
 
