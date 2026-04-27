@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login',    [AuthController::class, 'login']);
 Route::get('/health',         fn() => response()->json(['status' => 'ok']));
-
+Route::get('/login', fn() => response()->json(['message' => 'Unauthenticated'], 401))->name('login');
 // Protected (Sanctum)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
