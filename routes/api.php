@@ -17,7 +17,7 @@ Route::get('/login', fn() => response()->json(['message' => 'Unauthenticated'], 
 // Protected (Sanctum)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    Route::get('/auth/me',     [AuthController::class, 'me']);
+    Route::get('/auth/me',[AuthController::class, 'me']);
 
     // Boards
     Route::apiResource('boards', BoardController::class);
