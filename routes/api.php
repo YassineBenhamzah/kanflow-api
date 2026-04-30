@@ -46,4 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Comments
     Route::apiResource('tasks.comments', CommentController::class)
          ->only(['index', 'store', 'destroy'])->shallow();
+
+    // Checklists
+    Route::apiResource('tasks.checklist', \App\Http\Controllers\ChecklistItemController::class)
+         ->only(['store', 'update', 'destroy'])->shallow();
 });

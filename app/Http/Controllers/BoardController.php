@@ -17,7 +17,7 @@ class BoardController extends Controller
     public function show(Board $board) {
         $this->authorize('view', $board);
         // Eager load everything — avoids N+1
-        return $board->load('columns.tasks.assignee', 'members');
+        return $board->load('columns.tasks.assignee', 'columns.tasks.checklistItems', 'members');
     }
 
     public function store(Request $request) {

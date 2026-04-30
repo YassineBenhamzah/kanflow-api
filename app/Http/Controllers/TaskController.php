@@ -31,7 +31,7 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
             'assigned_to' => 'nullable|exists:users,id',
         ]));
-        $task->load('assignee');
+        $task->load('assignee', 'checklistItems');
         return response()->json($task);
     }
 

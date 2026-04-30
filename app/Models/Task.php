@@ -15,4 +15,5 @@ class Task extends Model
     public function column() { return $this->belongsTo(Column::class); }
     public function assignee() { return $this->belongsTo(User::class, 'assigned_to'); }
     public function comments() { return $this->hasMany(Comment::class)->latest(); }
+    public function checklistItems() { return $this->hasMany(ChecklistItem::class); }
 }
