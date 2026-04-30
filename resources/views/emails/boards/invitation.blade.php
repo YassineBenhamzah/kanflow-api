@@ -7,7 +7,7 @@ Hi **{{ $invitee->name }}**,
 
 You can now view tasks, move cards, and collaborate in real-time with your team.
 
-<x-mail::button :url="config('app.frontend_url') . '/dashboard/board/' . $board->id">
+<x-mail::button :url="env('FRONTEND_URL', 'http://localhost:3000') . '/dashboard/board/' . $board->id">
 Open Board
 </x-mail::button>
 
