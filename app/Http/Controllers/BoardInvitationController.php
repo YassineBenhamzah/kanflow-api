@@ -12,7 +12,7 @@ class BoardInvitationController extends Controller
      */
     public function show($token)
     {
-        $invitation = BoardInvitation::with('board:id,name,user_id')->where('token', $token)->firstOrFail();
+        $invitation = BoardInvitation::with('board:id,name,owner_id')->where('token', $token)->firstOrFail();
 
         // Load the inviter (the board owner)
         $inviter = $invitation->board->owner;
