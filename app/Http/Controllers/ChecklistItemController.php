@@ -25,25 +25,25 @@ class ChecklistItemController extends Controller
         return response()->json($item, 201);
     }
 
-    public function update(Request $request, ChecklistItem $checklistItem)
+    public function update(Request $request, ChecklistItem $checklist)
     {
-        $this->authorize('update', $checklistItem->task->column->board);
+        $this->authorize('update', $checklist->task->column->board);
 
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'is_completed' => 'sometimes|boolean',
         ]);
 
-        $checklistItem->update($validated);
+        $checklist->update($validated);
 
-        return response()->json($checklistItem);
+        return response()->json($checklist);
     }
 
-    public function destroy(ChecklistItem $checklistItem)
+    public function destroy(ChecklistItem $checklist)
     {
-        $this->authorize('update', $checklistItem->task->column->board);
+        $this->authorize('update', $checklist->task->column->board);
 
-        $checklistItem->delete();
+        $checklist->delete();
 
         return response()->noContent();
     }
