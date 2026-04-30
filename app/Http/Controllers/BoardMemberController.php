@@ -25,6 +25,9 @@ class BoardMemberController extends Controller
 
         $board->members()->attach($user->id, ['role' => 'member']);
 
+        // Send invitation email
+        \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\BoardInvitation($board, $user, $request->user()));
+
         return response()->json([
             'id' => $user->id,
             'name' => $user->name,
