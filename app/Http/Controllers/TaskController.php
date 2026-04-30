@@ -29,6 +29,7 @@ class TaskController extends Controller
             'description' => 'nullable|string',
             'priority' => 'nullable|in:low,medium,high',
             'due_date' => 'nullable|date',
+            'assigned_to' => 'nullable|exists:users,id',
         ]));
         return response()->json($task);
     }
