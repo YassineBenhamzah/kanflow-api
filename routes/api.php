@@ -6,6 +6,7 @@ use App\Http\Controllers\BoardMemberController;
 use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ActivityLogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
@@ -50,4 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Checklists
     Route::apiResource('tasks.checklist', \App\Http\Controllers\ChecklistItemController::class)
          ->only(['store', 'update', 'destroy'])->shallow();
+
+    // Activity Log
+    Route::get('/boards/{board}/activity', [ActivityLogController::class, 'index']);
 });
